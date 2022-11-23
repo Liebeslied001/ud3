@@ -36,81 +36,81 @@ imprimir(pokemons);
 
 // console.log(pokemons)
 // imprimir(pokemons);
- 
+
 //2. Crear una funcion para ordernar los pokemons dependiendo de el argumento que se ingrese en la funcion. Pueden ingresar: type, base_damage, base_hp o speed.
- 
-// let sortPokemons = (argument) => 
-// {
-//     let validInput = ["type","base_damage","base_hp","speed"]
 
-//     if(validInput.includes(argument)){
-//         let result = argument === "type" ? 
-//         (pokemons.sort((a,b) => a[argument].localeCompare(b[argument]))) : 
-//         (pokemons.sort((a,b) => a[argument] - b[argument]))
-        
-//         console.log(pokemons)
-//         //document.write("<br/>Ordenar los pokemons por argumento: "+argument+"<br/><br/>")
-        
-//         //imprimir(pokemons)  
-//     } else {
+let sortPokemons = (argument) =>
+{
+    let validInput = ["type","base_damage","base_hp","speed"]
 
-//         //document.write("<br/>Debes ingresar un argumeno valido<br/>")
-//         console.log("Debes ingresar un argumento valido")
-//     }
-// }
+    if(validInput.includes(argument)){
+        let result = argument === "type" ?
+        (pokemons.sort((a,b) => a[argument].localeCompare(b[argument]))) :
+        (pokemons.sort((a,b) => a[argument] - b[argument]))
+
+        console.log(pokemons)
+        //document.write("<br/>Ordenar los pokemons por argumento: "+argument+"<br/><br/>")
+
+        //imprimir(pokemons)
+    } else {
+
+        //document.write("<br/>Debes ingresar un argumeno valido<br/>")
+        console.log("Debes ingresar un argumento valido")
+    }
+}
 
 // let arg = prompt("Ingrese el argumento: ")
-    
+
 // sortPokemons(arg)
 
 //3. Crear una funcion que filtre el objeto pokemons y devuelva un arreglo con los pokemons filtrados. La funcion debe aceptar un argumento para filtrar por type de pokemon.
 
-// let filter = (argument) => {
-//     let filteredPokemons = pokemons.filter(pokemon => pokemon.type === argument)
-//     let result = filteredPokemons.length === 0 ? "Tipo de pokemon no encontrado " : filteredPokemons
+let filter = (argument) => {
+    let filteredPokemons = pokemons.filter(pokemon => pokemon.type === argument)
+    let result = filteredPokemons.length === 0 ? "Tipo de pokemon no encontrado " : filteredPokemons
 
-//     console.log(result)
-// }
+    console.log(result)
+}
 
 // filter("water")
 
 //4. Crear un objeto llamado Pokemon Master que tenga los siguientes atributos: id: number, name: string, created_date: string, y pokemon: array of objects.
- 
-// let pokemonMaster ={id: 1, name: "joseph", created_date: Date(), pokemons_id:[1,2,3]}
 
-// console.log(pokemonMaster)
+let pokemonMaster ={id: 1, name: "joseph", created_date: Date(), pokemons_id:[]}
+
+console.log(pokemonMaster)
 
 //5. Crear una funcion que de manera aleatoria agregue un nuevo pokemon al atributo pokemon de Pokemon Master.
 
-// let randomPokemon = () => {
-//     pokemonMaster.pokemons_id.push(parseInt(Math.random()*(10-1)+1))
-// }
+let randomPokemon = () => {
+    pokemonMaster.pokemons_id.push(pokemons[parseInt(Math.random()*(10-1)+1)])
+}
 
 // console.log(pokemonMaster)
 
 
 //6. Crear una funcion que agregue de manera aleatoria los atributos min_damage y max_damage a nuestro arreglo de pokemons teniendo en cuenta lo siguiente:
 // min_damage debe ser un numero entero aleatorio entre 1 y 2 y max_damage debe ser un numero entero aleatorio entre 3 y 5
- 
+
 let randomDamage = () => {
     for(let i = 0; i<pokemons.length; i++){
         pokemons[i].min_damage = (parseInt(Math.random()*(2-1)+1))
         pokemons[i].max_damage = (parseInt(Math.random()*(5-3)+3))
     }
 }
- 
 
-console.log(pokemons)
+
+//console.log(pokemons)
 //7. Crear una funcion que determine el daño que hara un pokemon elegido de la lista ante una posible pelea, para ello considerar que el daño que hara el pokemon es:
 // daño = base_damage + un valor aleatorio entre el min_damage y el max_damage
- 
+
 
 let damage = (index) => {
     if(index < pokemons.length){
-       // addAtribues()
+        randomDamage()
         let selectedPokemon = pokemons[index]
         let total_damage = selectedPokemon.base_damage + Math.floor(Math.random()*(selectedPokemon.max_damage-1+selectedPokemon.min_damage)+selectedPokemon.min_damage)
-        
+
         console.log(total_damage)
     } else{
         console.log(`Ingrese un numero menor a ${pokemons.length - 1}`)
@@ -120,4 +120,11 @@ let damage = (index) => {
 
 //8. Nuestro Pokemon Master quiere estar preparado para pelear, para ello necesita que lo apoyes a ordenar sus pokemons. El quiere que sus pokemons se ordenen de manera
 // que el que tenga un mayor valor posible de base_damage + max_damage sea el que este primero en la lista y asi sucesivamente.
- 
+
+
+const ordenarPokemonMaster = () => {
+
+    pokemonMaster.pokemon.sort((prev, next) => {
+        return  (next.base_damage + next.max_damage) - (prev.base_damage + prev.max_damage)       
+    })
+}
