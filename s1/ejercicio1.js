@@ -11,6 +11,7 @@ let pokemons = [
     {id: 10, name: "evee", type: "normal", base_damage: 10, base_hp: 12, speed: 30},
 ]
 
+
 let imprimir = (arreglo) =>
 {
     for(var i = 0; i<arreglo.length;i++){
@@ -24,7 +25,7 @@ let imprimir = (arreglo) =>
 }
 
 
-imprimir(pokemons);
+//imprimir(pokemons);
 
 
 //1. Ordernar los pokemons por base_damage de menor a mayor.
@@ -41,10 +42,10 @@ imprimir(pokemons);
 
 let sortPokemons = (argument) =>
 {
-    let validInput = ["type","base_damage","base_hp","speed"]
+    let validInput = ["type","base_damage","base_hp","speed","name","id"]
 
     if(validInput.includes(argument)){
-        let result = argument === "type" ?
+        argument === "type" || argument === "name"?
         (pokemons.sort((a,b) => a[argument].localeCompare(b[argument]))) :
         (pokemons.sort((a,b) => a[argument] - b[argument]))
 
@@ -124,7 +125,63 @@ let damage = (index) => {
 
 const ordenarPokemonMaster = () => {
 
-    pokemonMaster.pokemon.sort((prev, next) => {
+    pokemonMaster.pokemons.sort((prev, next) => {
         return  (next.base_damage + next.max_damage) - (prev.base_damage + prev.max_damage)       
     })
 }
+
+//9. Crear una lista desordenada de Pokemons en nuestro documento HTML
+const root = document.getElementById("root")
+const ul = document.createElement('ul')
+//root.append(ul)
+ 
+pokemons.forEach(pokemon => {
+    const li = document.createElement('li')
+    li.textContent = pokemon.name
+    ul.append(li)
+})
+ 
+//10. Utilizando javascript crear una tabla de pokemons con las siguientes columnas: id, name, type, base_damage, base_hp, speed
+const keys = Object.keys(pokemons[0])
+const table = document.createElement('table')
+root.append(table)
+const tr = document.createElement('tr')
+table.append(tr)
+
+keys.forEach((key) =>{
+    const th = document.createElement('th')
+    th.textContent = key
+    th.style.cursos = "pointer"
+    th.addEventListener("click", (event) => {
+        event.preventDefault()
+        sortPokemons(key)
+        table.innerHTML = ""
+        table.append(tr)
+        renderBody()
+    })
+
+    tr.append(th)
+
+})
+
+const renderBody= () =>{
+    pokemons.forEach(pokemon => {
+        const tr = document.createElement('tr')
+         for(const key in pokemon){
+            const td = document.createElement('td')
+            td.textContent = pokemon[key]
+            tr.append(td)
+         }
+         table.append(tr)
+    })
+}
+
+
+renderBody()
+
+//console.log(atributos)
+
+//11. Utilizando javascript modifica el codigo creado en el ejecicio anterior y agrega un evento que permita ordenar los pokemons haciendo click en sus encabezados.
+ 
+//12. Corrige la function sortPokemons para que acepte ordenarlos segun id y name.
+
