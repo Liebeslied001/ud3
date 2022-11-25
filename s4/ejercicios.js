@@ -1,61 +1,84 @@
+ 
+let users = [
+    {id: 1, nombre: "Andres", apellido: "Pacheco", edad: 38, profesion: "developer", created_at: "2022-09-26T06:25:21.118Z"},
+    {id: 2, nombre: "Andrea", apellido: "Sanchez", edad: 25, profesion: "profesor", created_at: "2022-04-18T14:14:32.879Z"},
+    {id: 3, nombre: "Julia", apellido: "Ochoa", edad: 32, profesion: "musico", created_at: "2021-12-14T11:53:38.279Z"},
+    {id: 4, nombre: "Samuel", apellido: "Martinez", edad: 29, profesion: "programador", created_at: "2022-01-26T03:31:15.202Z"},
+    {id: 5, nombre: "Roberto", apellido: "Mattos", edad: 40, profesion: "chef", created_at: "2022-07-27T02:06:22.760Z"},
+    {id: 6, nombre: "Mercedes", apellido: "Sanchez", edad: 35, profesion: "veterinario", created_at: "2022-05-01T22:06:35.864Z"},
+]
+
 //1. Crear una funcion que convierta los strings que se ingresan como parametros a estilo capitalizado.
 // Ejemplo: "hola a todos" => "Hola A Todos"
  
-const capitalize = (text) => {
-    const words = text.split(' ')
-    const word2 = words.map( (word) => {
-        return word.charAt(0).toUpperCase() + word.slice(1)
-    })
-    return word2.join(' ')
+let frase = "hola a todos" // "Hola a todos"
+ 
+function capitalizar(cadena){ //"hola a todos"
+    let array = cadena.split(" ") // ["hola", "a", "todos"]
+    let cadenaCapitalizada = []
+    for(const index in array){
+        cadenaCapitalizada.push((array[index].charAt(0).toUpperCase() + array[index].slice(1))) // h   a   t
+    }
+    return cadenaCapitalizada.join(" ")
 }
-
+ 
 //2. Dado el siguiente objeto, crear una funcion que verifique si todos los atributos se encuentran llenos.
 // En caso no sea asi, que envie una alerta mostrando un mensaje y los atributos que estan vacíos.
 // Ejemplo: {nombre: "", apellido: "Pacheco", edad: 38, profesion: ""} => Los campos nombre y profesion se encuentran vacios.
  
+let persona = { nombre: "", apellido: "Pacheco", edad: 38, profesion: ""}
+ 
+function verificarYLlenar(objeto) {
+    for(const index in objeto) {
+        if (objeto[index] === "") {
+            objeto[index] = prompt(`El campo ${index} está vacío, por favor llenalo: `)
+        }
+    }
+    return objeto
+}
+ 
 //3. Para el ejercicio anterior, crear una funcion que dados los datos pendientes, lance un prompt para que el usuario
 // complete los datos faltantes. Debe verificar que el dato ingresado no este vacio y que corresponda al tipo de dato.
  
-const checkEmpty = (objeto) => {
-    for(const prop in objeto){
-        if(objeto[prop]===""){
-            objeto[prop] = prompt(`El campo ${prop} esta vacio, por favor llenalo: `)
-        }
-    }
-}
-
-
 //4. Te enviaron una base de datos de usuarios:
  
-let users = [
-    {nombre: "", apellido: "Pacheco", edad: 38, profesion: ""},
-    {nombre: "Andrea", apellido: "", edad: 25, profesion: "profesor"},
-    {nombre: "Julia", apellido: "", edad: 32, profesion: "musico"},
-    {nombre: "", apellido: "Martinez", edad: 29, profesion: "programador"},
-    {nombre: "Roberto", apellido: "Mattos", edad: 40, profesion: ""},
-    {nombre: "Mercedes", apellido: "Sanchez", edad: 35, profesion: "veterinario"},
-]
-
-
+// let users = [
+//     {nombre: "", apellido: "Pacheco", edad: 38, profesion: ""},
+//     {nombre: "Andrea", apellido: "", edad: 25, profesion: "profesor"},
+//     {nombre: "Julia", apellido: "", edad: 32, profesion: "musico"},
+//     {nombre: "", apellido: "Martinez", edad: 29, profesion: "programador"},
+//     {nombre: "Roberto", apellido: "Mattos", edad: 40, profesion: ""},
+//     {nombre: "Mercedes", apellido: "Sanchez", edad: 35, profesion: "veterinario"},
+// ]
+ 
+// for(const index in users){
+//     verificarYLlenar(users[index])
+// }
+ 
+// console.log(users)
+ 
+// let users = [objeto1, objeto2, objeto3, objeto4]
+ 
+ 
+ 
 // Te piden que utilizando las funciones de los ejercicios anteriores, evalues que usuarios tienen datos pendientes
 // y en caso no existan, solicitar el ingreso de los datos a traves del prompt para completarlos.
  
 //5. Crear una funcion que permita ordenar los usuarios por edad de menor a mayor.
-
-const loopUsers = () => {
-    users.forEach((user, index) => {
-        console.log(`Usuario: ${index}`)
-        checkEmpty(user)
-     })
- }
-
- const sortUserByAge = () => {
-    loopUsers()
-    users.sort( (prev, next) => {
-        return prev.edad - next.edad
-    })
- }
-
+ 
+function ordenar(objeto) {
+    objeto.sort((a, b) => a.edad - b.edad)
+    return objeto
+}
+ 
+// let users = [
+//     {nombre: "Andres", apellido: "Pacheco", edad: 38, profesion: "developer"},
+//     {nombre: "Andrea", apellido: "Sanchez", edad: 25, profesion: "profesor"},
+//     {nombre: "Julia", apellido: "Ochoa", edad: 32, profesion: "musico"},
+//     {nombre: "Samuel", apellido: "Martinez", edad: 29, profesion: "programador"},
+//     {nombre: "Roberto", apellido: "Mattos", edad: 40, profesion: "chef"},
+//     {nombre: "Mercedes", apellido: "Sanchez", edad: 35, profesion: "veterinario"},
+// ]
  
 //6. Crear una funcion que nos permita escribir los datos de cada usuario en el navegador linea por linea de la siguiente manera:
 // 1. Recorrer el arreglo users
@@ -102,37 +125,72 @@ const root = document.getElementById("root")
 const boton = document.createElement("button")
 boton.textContent = "Aceptar"
 boton.addEventListener("click",() => {
-    alert("De acuerdo!")
+    eliminar()
+    //agregar()
+    
+    //alert("De acuerdo!")
 })
  
 root.append(boton)
  
  
 //9. Agrega un listener al boton para que cuando el usuario haga hover sobre este, el boton desaparezca.
-boton.addEventListener("mouseover", () =>{
-    boton.style.display = "none"
-})
-
-
+// boton.addEventListener("mouseover", () =>{
+//     boton.style.display = "none"
+// })
+ 
+ 
  
 //10. Crear una funcion que te permita ingresar en un prompt la informacion de un usuario de la siguiente manera:
 // "Ingrese la informacion del usuario (nombre, apellido, edad, profesion)"
 // El usuario digitara: Andres, Perez, 28, ingeniero.
 // La informacion debe ser guardada como objeto dentro del array users asignadole un id unico a cada registro.
  
+
+// function verificarYLlenar(objeto) {
+//     for(const index in objeto) {
+//         if (objeto[index] === "") {
+//             objeto[index] = prompt(`El campo ${index} está vacío, por favor llenalo: `)
+//         }
+//     }
+//     return objeto
+// }
+
+const agregar= () => {
+
+    const fecha =new Date()
+    //console.log(new Date().toLocaleString())
+    //console.log(fecha.toISOString())
+    //console.log(users.length)
+
+    const newUser = { id: 0,nombre: "", apellido: "", edad: 0, profesion: "",created_at:""}
+    for(const prop in newUser){
+        if(prop === "id"){
+            newUser[prop] = users.length+1
+        }else if(prop === "edad"){
+            newUser[prop]= +prompt(`Ingrese ${[prop]} por favor: `)
+        }else if(prop === "created_at"){
+            newUser[prop]= fecha.toISOString()
+        }else{   
+            newUser[prop]=prompt(`Ingrese ${[prop]} por favor: `)
+        }
+    }
+    users.push(newUser)
+}
+
 //11. Utilizando el objeto Date, añadir la propiedad created_date de manera interna en donde se registre el
 // momento en que ese registro fue creado.
  
 //12.
  
-let users = [
-    {id: 1, nombre: "Andres", apellido: "Pacheco", edad: 38, profesion: "developer", created_at: "2022-09-26T06:25:21.118Z"},
-    {id: 2, nombre: "Andrea", apellido: "Sanchez", edad: 25, profesion: "profesor", created_at: "2022-04-18T14:14:32.879Z"},
-    {id: 3, nombre: "Julia", apellido: "Ochoa", edad: 32, profesion: "musico", created_at: "2021-12-14T11:53:38.279Z"},
-    {id: 4, nombre: "Samuel", apellido: "Martinez", edad: 29, profesion: "programador", created_at: "2022-01-26T03:31:15.202Z"},
-    {id: 5, nombre: "Roberto", apellido: "Mattos", edad: 40, profesion: "chef", created_at: "2022-07-27T02:06:22.760Z"},
-    {id: 6, nombre: "Mercedes", apellido: "Sanchez", edad: 35, profesion: "veterinario", created_at: "2022-05-01T22:06:35.864Z"},
-]
+// let users = [
+//     {id: 1, nombre: "Andres", apellido: "Pacheco", edad: 38, profesion: "developer", created_at: "2022-09-26T06:25:21.118Z"},
+//     {id: 2, nombre: "Andrea", apellido: "Sanchez", edad: 25, profesion: "profesor", created_at: "2022-04-18T14:14:32.879Z"},
+//     {id: 3, nombre: "Julia", apellido: "Ochoa", edad: 32, profesion: "musico", created_at: "2021-12-14T11:53:38.279Z"},
+//     {id: 4, nombre: "Samuel", apellido: "Martinez", edad: 29, profesion: "programador", created_at: "2022-01-26T03:31:15.202Z"},
+//     {id: 5, nombre: "Roberto", apellido: "Mattos", edad: 40, profesion: "chef", created_at: "2022-07-27T02:06:22.760Z"},
+//     {id: 6, nombre: "Mercedes", apellido: "Sanchez", edad: 35, profesion: "veterinario", created_at: "2022-05-01T22:06:35.864Z"},
+// ]
  
 // Crear una funcion que permita ordenar la lista de usuarios por fecha de creacion, de la mas nueva a la mas antigua y viceversa
 // utilizando el parametro booleano reverse (si es true se ordenaran de nuevo a antiguo)
@@ -159,6 +217,21 @@ let users = [
 // que le pregunte: "Esta usted seguro? Si/No" y al escribir Si, deberia borrarlo. En cualquier otro caso
 // deberia volver a la pagina inicial sin que se haya borrado ningun registro.
  
+const eliminar = () => {
+    
+    const indice = +prompt("Ingrese el id del usuario a eliminar: ")
+    const seguro = prompt("Esta usted seguro? Si/No")
+    if(seguro.toLowerCase() === "si"){
+        users.splice((indice-1),1)
+        alert("Usuario eliminado")
+    }else if(seguro.toLowerCase() === "no"){
+        alert("No se elimino ningun usuario")
+    }else {
+        alert("Ingrese una respuesta valida")
+    }
+}
+
+
 // OPCIONAL1: Añadir a la tabla la funcionalidad de ordenar los registros al hacer click en los encabezados
 // (como en el caso de Pokemon). Sin embargo, al momento de hacer click nuevamente en el encabezado, los datos
 // deben ordenarse de manera inversa. Ejemplo: Si al hacer click se ordenan de menor a mayor, al volver a hacer
