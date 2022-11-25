@@ -56,4 +56,59 @@ const loopUsers = () => {
     })
  }
 
-
+ 
+//6. Crear una funcion que nos permita escribir los datos de cada usuario en el navegador linea por linea de la siguiente manera:
+// 1. Recorrer el arreglo users
+// 2. Obtener los valores de cada llave
+// 3. Formar la frase nombre apellido tiene edad años y es profesion
+// 4. Escribir esta frase en el navegador linea por linea
+// Ejemplo: "Andres Soto tiene 28 años y es profesor"
+ 
+for(const index in users){
+    let nombre = users[index].nombre
+    let apellido = users[index].apellido
+    let edad = users[index].edad
+    let profesion = users[index].profesion
+ 
+    let frase = `${nombre} ${apellido} tiene ${edad} años y es ${profesion}`
+    document.write(frase)
+    document.write("<br>")
+}
+ 
+//7. Crear una funcion que nos permita ingresar el parametro por el cual se va a ordenar la lista de usuarios y retorne la lista
+// ordenada.
+    // 1. Crear una funcion que reciba un parametro.
+    // 2. Ordenar nuestra lista segun ese parametro.
+    // 3. Retorna la lista ordenada.
+ 
+    function ordenar(parametro){
+        if (typeof users[parametro] === "number"){
+            return users.sort((a,b) => a[parametro]-b[parametro])
+        } else {
+            return users.sort((a,b) => a[parametro].localeCompare(b[parametro]))
+        }
+    }
+ 
+ 
+//8. Crear un boton con javascript que diga "Aceptar" y cuando se le de click mande una alerta que diga: "De acuerdo!"
+ 
+// 1. Seleccionar un elemento del DOM en donde vamos a pegar nuestro boton.
+// 2. Crear un elemento "boton"
+// 3. Añadir el elemento "boton" al elemento previamente seleccionado del DOM.
+// 4. Añadir la palabra "aceptar" a nuestro boton.
+// 5. Agregar un EventListener que cuando se haga click al boton muestre una alerta con el mensaje "De acuerdo!"
+ 
+const root = document.getElementById("root")
+const boton = document.createElement("button")
+boton.textContent = "Aceptar"
+boton.addEventListener("click",() => {
+    alert("De acuerdo!")
+})
+ 
+root.append(boton)
+ 
+ 
+//9. Agrega un listener al boton para que cuando el usuario haga hover sobre este, el boton desaparezca.
+boton.addEventListener("mouseover", () =>{
+    boton.style.display = "none"
+})
