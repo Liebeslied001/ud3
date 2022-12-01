@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+    <main>
+
+        <div class="contenedor">
+            <h1>VALIDACION <br> FORMULARIOS</h1>
+    
+            <form action="" id="formulario" class="formulario">
+                
+
+                <div id="groupUsuario">
+                    <label for="Usuario">Usuario</label>
+                    <div>
+                        <input type="text" id="usuario" placeholder="Javier123">
+                    </div>
+                </div>
+
+                <div id="groupNombre">
+                    <label for="Nombre">Nombre</label>
+                    <div>
+                        <input type="text" id="nombre" placeholder="Javier">
+                    </div>
+                </div>
+
+                <div id="groupCorreo">
+                    <label for="Correo">Correo</label>
+                    <div>
+                        <input type="text" id="correo" placeholder="javier123@gmail.com">
+                    </div> 
+                </div>
+
+                <div id="groupCelular">
+                    <label for="Celular">Celular</label>
+                    <div>
+                        <input type="number" id="celular" placeholder="999888777">
+                    </div>
+                </div>
+
+                <div id="genero">
+                    <label for="genero">Genero</label>
+                    <div>
+                        
+                        <select name="genre" id="genre">
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                            <option value="otro">Otro</option>
+                        
+                        </select>
+                    </div>
+                </div>
+
+                <div id="birthDate">
+                    <label for="birthDate">Fecha de Nacimiento</label>
+                    <div>
+                        <input type="date" id="birthDate">
+                    </div>
+                </div>
+
+
+
+                <!-- <button></button> -->
+                <input type="submit">
+            </form>
+    
+    
+        </div>
+    </main>
+
+    <script src="code.js"></script>
+
+
+</body>
+</html>

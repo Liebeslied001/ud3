@@ -1,0 +1,27 @@
+main {
+	/* max-width: 800px; */
+	width: 50%;
+	/* margin: auto; */
+	padding: 40px;
+}
+.contenedor{
+    background-color: lightgray;
+}
+.formulario{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+
+.incorrecto {
+    color: red;
+}
+.correcto {
+    color: green;
+}
+
+.formGroup{
+    flex-direction: row;
+    flex: auto;
+}
