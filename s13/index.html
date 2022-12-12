@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="control">
+        <p>Recorrido: <input type="text" ng-model="trayecto"></p>
+        <p>{{trayecto}}</p>
+        <p>{{tarifafinal()}}</p>
+    </div>
+
+
+    <script>
+        let app = angular.module("myApp", []);
+        app.controller('control',function($scope){
+            $scope.trayecto = 0;
+            $scope.tarifafinal = function() {
+                let monto = 0;
+                if($scope.trayecto <= 300){
+                    monto = 250;
+                } else if($scope.trayecto >= 300 && $scope.trayecto <=1000) {
+                    monto = 250 + (30*($scope.trayecto - 300))
+                } else {
+                    monto = 250 +(30*700) + 20 *($scope.trayecto - 1000)
+                }
+
+                if(monto < 500) return monto
+                else return monto*0.9
+
+
+
+            }
+
+
+
+        })
+
+
+    </script>
+
+</body>
+
+</html>
