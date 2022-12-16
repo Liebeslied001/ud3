@@ -1,0 +1,28 @@
+###
+POST http://localhost:9000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name":"Nikolas Tesla",
+    "age": 70,
+    "email": "nikolatesla@email.com"
+}
+
+###
+GET http://localhost:9000/api/users HTTP/1.1
+
+###
+GET http://localhost:9000/api/users/639ce0bfaad2b10c30208c2c HTTP/1.1
+
+###
+PUT  http://localhost:9000/api/users/639ce0bfaad2b10c30208c2c HTTP/1.1
+Content-Type: application/json
+
+{
+    "name":"Joseph Araujo",
+    "age": 22,
+    "email": "josepharaujo123@email.com"
+}
+
+###
+DELETE  http://localhost:9000/api/users/639ce10e562ef55a9f3ce6e5 HTTP/1.1
